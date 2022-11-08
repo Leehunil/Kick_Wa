@@ -15,6 +15,10 @@ public class Vehicle {
     @Column(name = "vehicle_id")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "place_id")
+    private Place place;
+
     private LocalDateTime endT;
     private Integer baseRate;
     private Integer perMinuteRate;
@@ -23,8 +27,8 @@ public class Vehicle {
     private VehicleStatus vehicleStatus;
 
     @Builder
-    public Vehicle(LocalDateTime endT, Integer baseRate, Integer perMinuteRate, VehicleStatus vehicleStatus){
-        this.endT = endT;
+    public Vehicle(Place place, Integer baseRate, Integer perMinuteRate, VehicleStatus vehicleStatus){
+        this.place = place;
         this.baseRate = baseRate;
         this.perMinuteRate = perMinuteRate;
         this.vehicleStatus = vehicleStatus;

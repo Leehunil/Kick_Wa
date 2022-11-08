@@ -1,5 +1,6 @@
 package DSC.Kick_Wa.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -23,10 +24,6 @@ public class Record {
     private Vehicle vehicle;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "startPlace_id")
-    private Place startPlace;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endPlace_id")
     private Place endPlace;
 
@@ -34,5 +31,10 @@ public class Record {
     private LocalDateTime startT;
     private LocalDateTime endT;
 
-
+    @Builder
+    public Record(User user, Vehicle vehicle, LocalDateTime startT){
+        this.user = user;
+        this.vehicle = vehicle;
+        this.startT = startT;
+    }
 }

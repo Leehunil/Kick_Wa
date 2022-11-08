@@ -12,8 +12,9 @@ public class RecordRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public void save(Record record){
+    public Record save(Record record){
         em.persist(record);
+        return record;
     }
 
     public Record findOne(Long id){

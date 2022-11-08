@@ -18,15 +18,12 @@ public class Place {
     private Long pLocationL;
     private Long pLocationH;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "map_id")
-    private Map map;
-
     @Builder
-    public Place(String name, Long pLocationL, Long pLocationH,Map map){
+    public Place(String name, Long pLocationL, Long pLocationH){
         this.name = name;
         this.pLocationL = pLocationL;
         this.pLocationH = pLocationH;
-        this.map = map;
     }
+
+    public Place(){}
 }
