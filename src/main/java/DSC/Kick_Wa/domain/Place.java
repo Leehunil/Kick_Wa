@@ -25,5 +25,6 @@ public class Place {
         this.pLocationH = pLocationH;
     }
 
-    public Place(){}
+    public Place() {
+    }
 }

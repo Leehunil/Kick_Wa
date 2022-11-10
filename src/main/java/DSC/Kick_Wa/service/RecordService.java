@@ -4,9 +4,9 @@ import DSC.Kick_Wa.domain.Record;
 import DSC.Kick_Wa.domain.User;
 import DSC.Kick_Wa.domain.Vehicle;
 import DSC.Kick_Wa.dto.RentalDto;
-import DSC.Kick_Wa.repository.RecordRepository;
-import DSC.Kick_Wa.repository.UserRepository;
-import DSC.Kick_Wa.repository.VehicleRepository;
+import DSC.Kick_Wa.repository.User.UserRepository;
+import DSC.Kick_Wa.repository.Vehicle.VehicleRepository;
+import DSC.Kick_Wa.repository.record.RecordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,8 +24,8 @@ public class RecordService {
 
     @Transactional
     public Long rental(RentalDto rentalDto){
-        User user = userRepository.findOne(rentalDto.getUserId());
-        Vehicle vehicle = vehicleRepository.findOne(rentalDto.getVehicleId());
+        User user = userRepository.findById(rentalDto.getUserId()).get();
+        Vehicle vehicle = vehicleRepository.findById(rentalDto.getVehicleId()).get();
 
         Long recordId = recordRepository.save(
                 Record.builder()
