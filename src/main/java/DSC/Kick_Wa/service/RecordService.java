@@ -22,6 +22,7 @@ public class RecordService {
     private final UserRepository userRepository;
     private final VehicleRepository vehicleRepository;
 
+    //킥보드 빌린 상황
     @Transactional
     public Long rental(RentalDto rentalDto){
         User user = userRepository.findById(rentalDto.getUserId()).get();
@@ -37,5 +38,6 @@ public class RecordService {
         return recordId;
     }
 
+    //킥보드 반납하기
 
 }

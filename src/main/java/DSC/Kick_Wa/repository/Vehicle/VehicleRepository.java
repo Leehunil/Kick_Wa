@@ -12,6 +12,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle,Long> {
     Vehicle save(Vehicle vehicle);
     Optional<Vehicle> findById(Long id);
     List<Vehicle> findAll();
+    boolean existsById(Long id);
 
     @Transactional
     void deleteById(Long id);

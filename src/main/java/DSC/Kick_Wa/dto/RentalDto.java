@@ -13,9 +13,8 @@ public class RentalDto {
 
     private LocalDateTime startT;
 
-    public RentalDto(Long userId, Long vehicleId, LocalDateTime startT){
+    public RentalDto(Long userId, Long vehicleId){
         this.userId = userId;
         this.vehicleId = vehicleId;
-        this.startT = startT;
     }
 }

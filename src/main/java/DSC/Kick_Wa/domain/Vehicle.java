@@ -33,4 +33,7 @@ public class Vehicle {
         this.perMinuteRate = perMinuteRate;
         this.vehicleStatus = vehicleStatus;
     }
+
+    public Vehicle() {
+    }
 }
