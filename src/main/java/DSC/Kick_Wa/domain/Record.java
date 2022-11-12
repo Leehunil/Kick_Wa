@@ -4,7 +4,10 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
 
 @Entity
 @Getter
@@ -27,14 +30,24 @@ public class Record {
     @JoinColumn(name = "endPlace_id")
     private Place endPlace;
 
-    private Integer useCount;
+    private long useCount;
     private LocalDateTime startT;
-    private LocalDateTime endT;
+    private LocalTime endT;
 
     @Builder
     public Record(User user, Vehicle vehicle, LocalDateTime startT){
         this.user = user;
         this.vehicle = vehicle;
         this.startT = startT;
+    }
+
+    public Record() {
+    }
+
+    public void useCal(){
+        Duration duration = Duration.between(this.startT,this.endT);
+        long seconds = duration.getSeconds();
+        long minute = seconds/60;
+        this.useCount = 500+(minute * 100);
     }
 }

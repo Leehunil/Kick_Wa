@@ -16,8 +16,6 @@ public class VehicleShowInfoDto {
     private Integer perMinuteRate;
     private VehicleStatus vehicleStatus;
 
-    @QueryProjection
     public VehicleShowInfoDto(){
-
     }
 }

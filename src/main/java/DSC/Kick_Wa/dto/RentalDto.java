@@ -11,8 +11,6 @@ public class RentalDto {
 
     private Long vehicleId;
 
-    private LocalDateTime startT;
-
     public RentalDto(Long userId, Long vehicleId){
         this.userId = userId;
         this.vehicleId = vehicleId;

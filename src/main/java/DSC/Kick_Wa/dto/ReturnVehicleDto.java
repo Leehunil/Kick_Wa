@@ -8,8 +8,5 @@ import java.time.LocalDateTime;
 @Getter
 public class ReturnVehicleDto {
 
-    private Long id;
-    private LocalDateTime endT;
-    private Place endPlace;
-    private Integer useCount;
+    private Long placeId;
 }

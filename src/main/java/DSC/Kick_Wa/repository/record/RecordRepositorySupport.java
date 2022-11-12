@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Repository
 public class RecordRepositorySupport extends QuerydslRepositorySupport {
@@ -22,11 +23,11 @@ public class RecordRepositorySupport extends QuerydslRepositorySupport {
     }
 
     @Transactional
-    public Long returnVehicle(ReturnVehicleDto returnVehicleDto){
-        QRecord r = QRecord.record;
-        return jpaQueryFactory.update(r)
-                .set(r.endPlace,returnVehicleDto.getEndPlace())
-                .set(r.endT, LocalDateTime.now())
+    public Long returnVehicle(Long placeId) {
+        QRecord record = QRecord.record;
+        return jpaQueryFactory.update(record)
+                .set(record.endPlace, placeId)
+                .set(record.endT, LocalTime.now())
                 .execute();
     }
 }

@@ -38,6 +38,6 @@ public class RecordServiceTest {
         em.persist(user2);
 
         em.persist(vehicle);
-        recordService.rental(user1.getId(), vehicle.getId());
+        //recordService.rental(user1.getId(), vehicle.getId());
     }
 }
