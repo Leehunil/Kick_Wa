@@ -8,5 +8,9 @@ import java.time.LocalDateTime;
 @Getter
 public class ReturnVehicleDto {
 
+    private Long recordId;
+
     private Long placeId;
+
+    private Long vehicleId;
 }

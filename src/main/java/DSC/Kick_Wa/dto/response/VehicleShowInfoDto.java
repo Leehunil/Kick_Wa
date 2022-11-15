@@ -1,7 +1,6 @@
 package DSC.Kick_Wa.dto.response;
 
 import DSC.Kick_Wa.domain.VehicleStatus;
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,5 +16,6 @@ public class VehicleShowInfoDto {
     private VehicleStatus vehicleStatus;
 
     public VehicleShowInfoDto(){
+
     }
 }

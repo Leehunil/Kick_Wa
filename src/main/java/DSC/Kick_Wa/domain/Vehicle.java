@@ -36,4 +36,12 @@ public class Vehicle {
 
     public Vehicle() {
     }
+
+    public void rentalStatus(){
+        this.vehicleStatus = VehicleStatus.DRIVING;
+    }
+
+    public void returnStatus(){
+        this.vehicleStatus = VehicleStatus.POSSIBLE;
+    }
 }

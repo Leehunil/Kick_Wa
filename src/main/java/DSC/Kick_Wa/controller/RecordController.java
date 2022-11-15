@@ -1,7 +1,9 @@
 package DSC.Kick_Wa.controller;
 
+import DSC.Kick_Wa.domain.Record;
 import DSC.Kick_Wa.dto.RentalDto;
 import DSC.Kick_Wa.dto.ReturnVehicleDto;
+import DSC.Kick_Wa.dto.response.UsageRecordDto;
 import DSC.Kick_Wa.response.DefaultRes;
 import DSC.Kick_Wa.response.StatusCode;
 import DSC.Kick_Wa.service.RecordService;
@@ -9,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,22 +24,34 @@ public class RecordController {
 
     //킥보드 빌린다
     @PostMapping("/rental")
-    public ResponseEntity rental(@RequestBody RentalDto rentalDto){
+    public ResponseEntity rental(@RequestBody RentalDto rentalDto) {
 
         Long record = recordService.rental(rentalDto);
 
         return record != null ?
-                new ResponseEntity(DefaultRes.res(StatusCode.OK,"킥보드 대여 완료",record), HttpStatus.OK):
-                new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST,"잘못된 요청"),HttpStatus.OK);
+                new ResponseEntity(DefaultRes.res(StatusCode.OK, "킥보드 대여 완료", record), HttpStatus.OK) :
+                new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
     }
 
     //킥보드 반납
     @PostMapping("/return-vehicle")
-    public ResponseEntity returnVehicle(@RequestAttribute("recordId") Long recordId, @RequestBody ReturnVehicleDto returnVehicleDto){
-        Long record = recordService.returnVehicle(recordId, returnVehicleDto);
+    public ResponseEntity returnVehicle(@RequestBody ReturnVehicleDto returnVehicleDto) {
+        Long record = recordService.returnVehicle(returnVehicleDto);
 
         return record != null ?
-                new ResponseEntity(DefaultRes.res(StatusCode.OK,"킥보드 반납 완료",record), HttpStatus.OK):
-                new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST,"잘못된 요청"),HttpStatus.OK);
+                new ResponseEntity(DefaultRes.res(StatusCode.OK, "킥보드 반납 완료", record), HttpStatus.OK) :
+                new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
+    }
+
+    //유저 이용 내역
+    @GetMapping("/show/usage-info")
+    public ResponseEntity showUsageInfo(@RequestAttribute("userId") Long userId) {
+
+        List<Record> records = recordService.showUsageRecord(userId);
+        List<UsageRecordDto> collect = records.stream().map(s -> new UsageRecordDto(s)).collect(Collectors.toList());
+
+        return collect != null ?
+                new ResponseEntity(DefaultRes.res(StatusCode.OK, "유저 이용 내역 조회 완료", collect), HttpStatus.OK) :
+                new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
     }
 }

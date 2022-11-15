@@ -30,9 +30,9 @@ public class Record {
     @JoinColumn(name = "endPlace_id")
     private Place endPlace;
 
-    private long useCount;
+    private Long useCount;
     private LocalDateTime startT;
-    private LocalTime endT;
+    private LocalDateTime endT;
 
     @Builder
     public Record(User user, Vehicle vehicle, LocalDateTime startT){
@@ -44,10 +44,16 @@ public class Record {
     public Record() {
     }
 
-    public void useCal(){
+    public Long useCal(){
         Duration duration = Duration.between(this.startT,this.endT);
-        long seconds = duration.getSeconds();
-        long minute = seconds/60;
-        this.useCount = 500+(minute * 100);
+        Long seconds = duration.getSeconds();
+        Long minute = seconds/60;
+        return 500+(minute * 100);
+    }
+
+    public void edit(Place endPlace,LocalDateTime endT,Long useCount){
+        this.endPlace = endPlace;
+        this.endT = endT;
+        this.useCount= useCount;
     }
 }
