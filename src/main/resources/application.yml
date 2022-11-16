@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: apikey
   datasource:
     url: jdbc:mysql://localhost:3306/kick_wa?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&useSSL=true
     username: kick_wa

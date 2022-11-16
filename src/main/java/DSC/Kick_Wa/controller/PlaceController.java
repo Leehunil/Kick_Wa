@@ -5,10 +5,10 @@ import DSC.Kick_Wa.response.DefaultRes;
 import DSC.Kick_Wa.response.StatusCode;
 import DSC.Kick_Wa.service.PlaceService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +24,15 @@ import java.net.URL;
 public class PlaceController {
 
     private final PlaceService placeService;
-    @Value("${apikey.busStation}")
-    private String busStation;
+
+    @Value("${apikey.sejong}")
+    private String sejong;
 
     @GetMapping("/api/load")
     public ResponseEntity loadJsonFromApi(){
         StringBuffer result = new StringBuffer();
         try{
-            URL url = new URL(busStation);
+            URL url = new URL(sejong);
             HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty("Content-type", "application/json");
