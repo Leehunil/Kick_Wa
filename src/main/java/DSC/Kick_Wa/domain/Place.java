@@ -15,11 +15,11 @@ public class Place {
     private Long id;
 
     private String name;
-    private Long pLocationL;
-    private Long pLocationH;
+    private String pLocationL;
+    private String pLocationH;
 
     @Builder
-    public Place(String name, Long pLocationL, Long pLocationH){
+    public Place(String name, String pLocationL, String pLocationH){
         this.name = name;
         this.pLocationL = pLocationL;
         this.pLocationH = pLocationH;

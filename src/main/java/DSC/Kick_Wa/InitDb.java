@@ -5,6 +5,7 @@ import DSC.Kick_Wa.domain.Record;
 import DSC.Kick_Wa.domain.User;
 import DSC.Kick_Wa.domain.Vehicle;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +61,8 @@ public class InitDb {
             em.persist(record1);
             em.persist(record2);
             em.persist(record3);
+
+            JSONParser jsonParser = new JSONParser();
         }
     }
 }
