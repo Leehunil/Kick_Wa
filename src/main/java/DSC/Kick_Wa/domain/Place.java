@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,14 +17,17 @@ public class Place {
     private Long id;
 
     private String name;
-    private String pLocationL;
-    private String pLocationH;
+    private String latitude;
+    private String longitude;
+
+    @OneToMany(mappedBy = "place", orphanRemoval = true)
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     @Builder
-    public Place(String name, String pLocationL, String pLocationH){
+    public Place(String name, String latitude, String longitude){
         this.name = name;
-        this.pLocationL = pLocationL;
-        this.pLocationH = pLocationH;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Place() {

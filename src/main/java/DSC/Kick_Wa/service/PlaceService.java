@@ -19,9 +19,12 @@ public class PlaceService {
         Long placeId = placeRepository.save(
                 Place.builder()
                         .name(savePlaceRequestDto.getName())
-                        .pLocationL(savePlaceRequestDto.getLatitude())
-                        .pLocationH(savePlaceRequestDto.getLongitude())
+                        .latitude(savePlaceRequestDto.getLatitude())
+                        .longitude(savePlaceRequestDto.getLongitude())
                         .build()
-        );
+        ).getId();
+    }
+    public void showPlaceInfo(){
+
     }
 }

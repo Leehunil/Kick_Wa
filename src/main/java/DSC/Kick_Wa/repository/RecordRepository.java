@@ -1,43 +1,15 @@
 package DSC.Kick_Wa.repository;
 
 import DSC.Kick_Wa.domain.Record;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.List;
+import java.util.Optional;
 
-@Repository
-@RequiredArgsConstructor
-public class RecordRepository {
+public interface RecordRepository extends JpaRepository<Record,Long> {
+    Record save(Record record);
+    Optional<Record> findById(Long id);
 
-    private final EntityManager em;
-
-    public Long save(Record record){
-        em.persist(record);
-        return record.getId();
-    }
-
-    public Record findOne(Long recordId){
-        return em.find(Record.class,recordId);
-    }
-
-    public List<Record> findUserUsage(Long userId){
-        return em.createQuery("select r from Record r" +
-                        " left join fetch r.vehicle v" +
-                        " left join fetch r.user u" +
-                        " where u.id = :userId", Record.class)
-                .setParameter("userId",userId)
-                .getResultList();
-    }
-
-    public List<Record> findUserInfo(Long userId){
-        return em.createQuery("select r from Record r" +
-                        " left join fetch r.user u" +
-                        " where u.id = :userId", Record.class)
-                .setParameter("userId",userId)
-                .getResultList();
-    }
-
-
+    @Transactional
+    void deleteById(Long id);
 }

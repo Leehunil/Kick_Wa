@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -23,7 +21,7 @@ public class VehicleService {
     //킥보드 생성
     @Transactional
     public Long create(Long placeId,Integer baseRate, Integer perMinuteRate){
-        Place place = placeRepository.findOne(placeId);
+        Place place = placeRepository.findById(placeId).get();
 
         Long vehicleId = vehicleRepository.save(
                 Vehicle.builder()
@@ -32,21 +30,21 @@ public class VehicleService {
                         .perMinuteRate(500)
                         .vehicleStatus(VehicleStatus.POSSIBLE)
                         .build()
-        );
+        ).getId();
         return vehicleId;
     }
 
     //킥보드 삭제
     @Transactional
     public Long deleteVehicle(Long vehicleId){
-        Vehicle vehicle = vehicleRepository.findOne(vehicleId);
+        Vehicle vehicle = vehicleRepository.findById(vehicleId).get();
         vehicleRepository.delete(vehicle);
         return vehicleId;
     }
 
     //킥보드 정보 보여주기
     public VehicleShowInfoDto vehicleShowInfo(Long vehicleId){
-        Vehicle vehicle = vehicleRepository.findOne(vehicleId);
+        Vehicle vehicle = vehicleRepository.findById(vehicleId).get();
         VehicleShowInfoDto vehicleShowInfoDto = new VehicleShowInfoDto();
         vehicleShowInfoDto.setVehicleStatus(vehicle.getVehicleStatus());
         vehicleShowInfoDto.setBaseRate(vehicle.getBaseRate());

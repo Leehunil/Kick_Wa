@@ -36,6 +36,7 @@ public class RecordController {
     //킥보드 반납
     @PostMapping("/return-vehicle")
     public ResponseEntity returnVehicle(@RequestBody ReturnVehicleDto returnVehicleDto) {
+
         Long record = recordService.returnVehicle(returnVehicleDto);
 
         return record != null ?

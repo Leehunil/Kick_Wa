@@ -1,9 +1,6 @@
 package DSC.Kick_Wa;
 
-import DSC.Kick_Wa.domain.Place;
-import DSC.Kick_Wa.domain.Record;
-import DSC.Kick_Wa.domain.User;
-import DSC.Kick_Wa.domain.Vehicle;
+import DSC.Kick_Wa.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
@@ -38,14 +35,6 @@ public class InitDb {
             em.persist(user2);
             em.persist(user3);
 
-            Vehicle vehicle1 = new Vehicle();
-            Vehicle vehicle2 = new Vehicle();
-            Vehicle vehicle3 = new Vehicle();
-
-            em.persist(vehicle1);
-            em.persist(vehicle2);
-            em.persist(vehicle3);
-
             Place place1 = new Place();
             Place place2 = new Place();
             Place place3 = new Place();
@@ -53,6 +42,14 @@ public class InitDb {
             em.persist(place1);
             em.persist(place2);
             em.persist(place3);
+
+            Vehicle vehicle1 = new Vehicle(place1,500,100, VehicleStatus.POSSIBLE);
+            Vehicle vehicle2 = new Vehicle(place2,500,100,VehicleStatus.POSSIBLE);
+            Vehicle vehicle3 = new Vehicle(place3,500,100,VehicleStatus.POSSIBLE);
+
+            em.persist(vehicle1);
+            em.persist(vehicle2);
+            em.persist(vehicle3);
 
             Record record1 = new Record();
             Record record2 = new Record();

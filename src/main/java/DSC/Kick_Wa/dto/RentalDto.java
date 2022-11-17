@@ -2,7 +2,6 @@ package DSC.Kick_Wa.dto;
 
 import lombok.Getter;
 
-import java.time.LocalDateTime;
 
 @Getter
 public class RentalDto {

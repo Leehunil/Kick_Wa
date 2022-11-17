@@ -34,14 +34,14 @@ public class Vehicle {
         this.vehicleStatus = vehicleStatus;
     }
 
-    public Vehicle() {
-    }
-
     public void rentalStatus(){
         this.vehicleStatus = VehicleStatus.DRIVING;
     }
 
-    public void returnStatus(){
+    public void returnVehicle(LocalDateTime endT, Place place){
         this.vehicleStatus = VehicleStatus.POSSIBLE;
+        this.endT = endT;
+        this.place = place;
     }
+
 }

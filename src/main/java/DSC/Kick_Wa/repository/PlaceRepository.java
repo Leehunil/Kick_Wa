@@ -1,29 +1,15 @@
 package DSC.Kick_Wa.repository;
 
 import DSC.Kick_Wa.domain.Place;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
+import java.util.Optional;
 
-@Repository
-@RequiredArgsConstructor
-public class PlaceRepository {
+public interface PlaceRepository extends JpaRepository<Place,Long> {
+    Place save(Place place);
+    Optional<Place> findById(Long id);
 
-    private final EntityManager em;
-
-    public Long save(Place place){
-        em.persist(place);
-        return place.getId();
-    }
-
-    public Place findOne(Long id){
-        return em.find(Place.class,id);
-    }
-
-    public void delete(Place place){
-        em.remove(place);
-    }
-
-
+    @Transactional
+    void deleteById(Long id);
 }

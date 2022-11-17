@@ -1,30 +1,15 @@
 package DSC.Kick_Wa.repository;
 
 import DSC.Kick_Wa.domain.Vehicle;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
+import java.util.Optional;
 
-@Repository
-@RequiredArgsConstructor
-public class VehicleRepository {
+public interface VehicleRepository extends JpaRepository<Vehicle,Long> {
+    Vehicle save(Vehicle vehicle);
+    Optional<Vehicle> findById(Long id);
 
-    private final EntityManager em;
-
-    public Long save(Vehicle vehicle){
-        em.persist(vehicle);
-        return vehicle.getId();
-    }
-
-    public Vehicle findOne(Long id){
-        return em.find(Vehicle.class,id);
-    }
-
-    public void delete(Vehicle vehicle){
-        em.remove(vehicle);
-    }
-
-
-
+    @Transactional
+    void deleteById(Long id);
 }

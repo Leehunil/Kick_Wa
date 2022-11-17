@@ -44,8 +44,8 @@ public class Record {
     public Record() {
     }
 
-    public Long useCal(){
-        Duration duration = Duration.between(this.startT,this.endT);
+    public Long useCal(LocalDateTime endT){
+        Duration duration = Duration.between(this.startT,endT);
         Long seconds = duration.getSeconds();
         Long minute = seconds/60;
         return 500+(minute * 100);
