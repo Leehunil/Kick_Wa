@@ -15,7 +15,10 @@ public class VehicleShowInfoDto {
     private Integer perMinuteRate;
     private VehicleStatus vehicleStatus;
 
-    public VehicleShowInfoDto(){
-
+    public VehicleShowInfoDto(LocalDateTime endT, Integer baseRate, Integer perMinuteRate, VehicleStatus vehicleStatus){
+        this.endT = endT;
+        this.baseRate = baseRate;
+        this.perMinuteRate = perMinuteRate;
+        this.vehicleStatus = vehicleStatus;
     }
 }

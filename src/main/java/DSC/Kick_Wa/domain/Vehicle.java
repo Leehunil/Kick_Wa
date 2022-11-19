@@ -34,6 +34,8 @@ public class Vehicle {
         this.vehicleStatus = vehicleStatus;
     }
 
+
+
     public void rentalStatus(){
         this.vehicleStatus = VehicleStatus.DRIVING;
     }
@@ -42,6 +44,10 @@ public class Vehicle {
         this.vehicleStatus = VehicleStatus.POSSIBLE;
         this.endT = endT;
         this.place = place;
+    }
+
+    public void setEndT(LocalDateTime endT){
+        this.endT = endT;
     }
 
 }

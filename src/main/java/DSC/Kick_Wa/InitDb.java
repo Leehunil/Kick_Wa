@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -44,8 +45,11 @@ public class InitDb {
             em.persist(place3);
 
             Vehicle vehicle1 = new Vehicle(place1,500,100, VehicleStatus.POSSIBLE);
+            vehicle1.setEndT(LocalDateTime.now());
             Vehicle vehicle2 = new Vehicle(place2,500,100,VehicleStatus.POSSIBLE);
+            vehicle2.setEndT(LocalDateTime.now());
             Vehicle vehicle3 = new Vehicle(place3,500,100,VehicleStatus.POSSIBLE);
+            vehicle3.setEndT(LocalDateTime.now());
 
             em.persist(vehicle1);
             em.persist(vehicle2);

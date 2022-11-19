@@ -45,11 +45,8 @@ public class VehicleService {
     //킥보드 정보 보여주기
     public VehicleShowInfoDto vehicleShowInfo(Long vehicleId){
         Vehicle vehicle = vehicleRepository.findById(vehicleId).get();
-        VehicleShowInfoDto vehicleShowInfoDto = new VehicleShowInfoDto();
-        vehicleShowInfoDto.setVehicleStatus(vehicle.getVehicleStatus());
-        vehicleShowInfoDto.setBaseRate(vehicle.getBaseRate());
-        vehicleShowInfoDto.setEndT(vehicle.getEndT());
-        vehicleShowInfoDto.setPerMinuteRate(vehicle.getPerMinuteRate());
+        VehicleShowInfoDto vehicleShowInfoDto = new VehicleShowInfoDto(vehicle.getEndT(), vehicle.getBaseRate(),
+                vehicle.getPerMinuteRate(),vehicle.getVehicleStatus());
         return vehicleShowInfoDto;
     }
 
