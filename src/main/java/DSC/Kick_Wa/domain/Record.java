@@ -1,13 +1,12 @@
 package DSC.Kick_Wa.domain;
 
+import DSC.Kick_Wa.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Period;
 
 @Entity
 @Getter

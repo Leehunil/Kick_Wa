@@ -1,6 +1,6 @@
 package DSC.Kick_Wa.repository.User;
 
-import DSC.Kick_Wa.domain.User;
+import DSC.Kick_Wa.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

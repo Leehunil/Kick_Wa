@@ -1,6 +1,7 @@
 package DSC.Kick_Wa;
 
 import DSC.Kick_Wa.domain.*;
+import DSC.Kick_Wa.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;

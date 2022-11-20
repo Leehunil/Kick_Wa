@@ -2,7 +2,7 @@ package DSC.Kick_Wa.service;
 
 import DSC.Kick_Wa.domain.Place;
 import DSC.Kick_Wa.domain.Record;
-import DSC.Kick_Wa.domain.User;
+import DSC.Kick_Wa.domain.user.User;
 import DSC.Kick_Wa.domain.Vehicle;
 import DSC.Kick_Wa.dto.RentalDto;
 import DSC.Kick_Wa.dto.ReturnVehicleDto;

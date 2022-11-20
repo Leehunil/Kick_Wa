@@ -1,6 +1,6 @@
 package DSC.Kick_Wa.service.user;
 
-import DSC.Kick_Wa.domain.User;
+import DSC.Kick_Wa.domain.user.User;
 import DSC.Kick_Wa.dto.SignUpDto;
 import DSC.Kick_Wa.repository.User.UserRepository;
 import lombok.RequiredArgsConstructor;
