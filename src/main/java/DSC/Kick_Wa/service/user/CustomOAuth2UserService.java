@@ -22,10 +22,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     private final UserRepository userRepository;
     private final HttpSession httpSession;
 
+    //구글 로그인 이후 호출된다.(SecurityConfig에서 호출됩니다.)
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
+
 
         String registratrionId = userRequest.getClientRegistration().getRegistrationId();
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
@@ -49,5 +51,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .orElse(attributes.toEntity());
 
         return userRepository.save(user);
+
+        //해당 email의 유저가 존재하는지 여부를 확인하고 해당 유저가 없으면 attribute.toEntity()호출로 유저클래스에 값을 넘기고 save된다.
     }
 }

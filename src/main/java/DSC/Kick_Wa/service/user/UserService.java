@@ -20,10 +20,6 @@ public class UserService {
         Long id = userRepository.save(
                 User.builder()
                         .name(user.getName())
-                        .address(user.getAddress())
-                        .phoneNum(user.getPhoneNum())
-                        .loginId(user.getLoginId())
-                        .password(user.getPassword())
                         .email(user.getEmail())
                         .build())
                 .getId();

@@ -11,17 +11,13 @@ import java.time.LocalDateTime;
 @Getter
 public class User {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
     private String name;
     private String email;
     private String picture;
-
-    @CreatedDate  //생성된 시간 정보
-    @Column(updatable = false) //컬럼을 수정한 이후 들어오는 데이터를 막는 것이다.
-    private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

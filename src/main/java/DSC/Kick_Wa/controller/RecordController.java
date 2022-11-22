@@ -50,7 +50,7 @@ public class RecordController {
 
         List<Record> records = recordService.showUsageRecord(userId);
         List<UsageRecordDto> collect = records.stream().map(s -> new UsageRecordDto(s)).collect(Collectors.toList());
-
+        System.out.println("collect = " + collect);
         return collect != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "유저 이용 내역 조회 완료", collect), HttpStatus.OK) :
                 new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
