@@ -14,4 +14,6 @@ public class RentalDto {
         this.userId = userId;
         this.vehicleId = vehicleId;
     }
+
+    public RentalDto(){}
 }

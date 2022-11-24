@@ -1,8 +1,10 @@
 package DSC.Kick_Wa.domain;
 
 import DSC.Kick_Wa.domain.user.User;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Duration;
@@ -10,6 +12,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Record {
 
     @Id
@@ -29,7 +32,7 @@ public class Record {
     @JoinColumn(name = "endPlace_id")
     private Place endPlace;
 
-    private Long useCount;
+    private Long useFee;
     private LocalDateTime startT;
     private LocalDateTime endT;
 
@@ -40,9 +43,6 @@ public class Record {
         this.startT = startT;
     }
 
-    public Record() {
-    }
-
     public Long useCal(LocalDateTime endT){
         Duration duration = Duration.between(this.startT,endT);
         Long seconds = duration.getSeconds();
@@ -50,9 +50,13 @@ public class Record {
         return 500+(minute * 100);
     }
 
-    public void edit(Place endPlace,LocalDateTime endT,Long useCount){
+    public void edit(Place endPlace,LocalDateTime endT,Long useFee){
         this.endPlace = endPlace;
         this.endT = endT;
-        this.useCount= useCount;
+        this.useFee= useFee;
+    }
+
+    public void addUseCount(){
+        this.user.addUseCount();
     }
 }

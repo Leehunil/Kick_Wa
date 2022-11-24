@@ -12,7 +12,7 @@ public class UsageRecordDto {
 
     private LocalDateTime endT;
 
-    private Long useCount;
+    private Long useFee;
 
     private Long vehicleId;
 
@@ -21,7 +21,7 @@ public class UsageRecordDto {
     public UsageRecordDto(Record record) {
         startT = record.getStartT();
         endT = record.getEndT();
-        useCount = record.getUseCount();
+        useFee = record.getUseFee();
         vehicleId = record.getVehicle().getId();
         userId = record.getUser().getId();
     }

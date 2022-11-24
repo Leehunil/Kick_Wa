@@ -1,13 +1,16 @@
 package DSC.Kick_Wa.domain;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Vehicle {
 
     @Id
@@ -46,8 +49,7 @@ public class Vehicle {
         this.place = place;
     }
 
-    public void setEndT(LocalDateTime endT){
+    public void setEndT(LocalDateTime endT) {
         this.endT = endT;
     }
-
 }

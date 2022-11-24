@@ -1,6 +1,5 @@
 package DSC.Kick_Wa.controller;
 
-import DSC.Kick_Wa.domain.Record;
 import DSC.Kick_Wa.dto.RentalDto;
 import DSC.Kick_Wa.dto.ReturnVehicleDto;
 import DSC.Kick_Wa.dto.response.UsageRecordDto;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -46,13 +44,13 @@ public class RecordController {
 
     //유저 이용 내역
     @GetMapping("/show/usage-info")
-    public ResponseEntity showUsageInfo(@RequestAttribute("userId") Long userId) {
+    public ResponseEntity showUsageInfo(@RequestParam(name = "userId") Long userId) {
 
-        List<Record> records = recordService.showUsageRecord(userId);
-        List<UsageRecordDto> collect = records.stream().map(s -> new UsageRecordDto(s)).collect(Collectors.toList());
-        System.out.println("collect = " + collect);
+        List<UsageRecordDto> collect = recordService.showUsageRecord(userId);
+
         return collect != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "유저 이용 내역 조회 완료", collect), HttpStatus.OK) :
                 new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
     }
+
 }

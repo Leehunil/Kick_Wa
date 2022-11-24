@@ -6,6 +6,14 @@ spring:
     username: kick_wa
     password: 3751
     driver-class-name: com.mysql.cj.jdbc.Driver
+  #security:
+  #  oauth2:
+  #    client:
+  #      registration:
+  #        google:
+  #          client-id: 226393017031-v15rgn9759vec6piru7vathpbp7cmnfq.apps.googleusercontent.com
+  #          client-secret: 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
+  #          scope: email
 
   jpa:
     hibernate:

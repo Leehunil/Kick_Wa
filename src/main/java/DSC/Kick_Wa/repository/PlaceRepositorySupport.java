@@ -1,6 +1,5 @@
 package DSC.Kick_Wa.repository;
 
-import DSC.Kick_Wa.domain.Place;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

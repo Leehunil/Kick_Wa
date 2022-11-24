@@ -6,6 +6,7 @@ import DSC.Kick_Wa.domain.user.User;
 import DSC.Kick_Wa.domain.Vehicle;
 import DSC.Kick_Wa.dto.RentalDto;
 import DSC.Kick_Wa.dto.ReturnVehicleDto;
+import DSC.Kick_Wa.dto.response.UsageRecordDto;
 import DSC.Kick_Wa.repository.*;
 import DSC.Kick_Wa.repository.User.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,7 +26,6 @@ public class RecordService {
     private final UserRepository userRepository;
     private final VehicleRepository vehicleRepository;
     private final PlaceRepository placeRepository;
-    private final RecordRepositorySupport recordRepositorySupport;
 
     //킥보드 빌린 상황
     @Transactional
@@ -41,6 +42,9 @@ public class RecordService {
         ).getId();
         vehicle.rentalStatus();
 
+        Record record = recordRepository.findById(recordId).get();
+        record.addUseCount();
+        user.userRentalVehicle();
         return recordId;
     }
 
@@ -54,21 +58,24 @@ public class RecordService {
         Long useCount = record.useCal(time);
         record.edit(place,time,useCount);
         vehicle.returnVehicle(time,place);
+        User user = recordRepository.findById(returnVehicleDto.getRecordId()).get().getUser();
+        user.userReturnVehicle();
         return record.getId();
     }
 
     //유저의 이용 횟수 보여주기
-    public Integer showUsageCount(Long userId){
-        List<Record> findRecords = recordRepositorySupport.findUserInfo(userId);
-        return findRecords.size();
+    //public Integer showUsageCount(Long userId){
+    //    List<Record> findRecords = recordRepositorySupport.findUserInfo(userId);
+    //    return findRecords.size();
+    //}
+
+    //유저의 사용 내역 보여주기
+    public List<UsageRecordDto> showUsageRecord(Long userId){
+        List<Record> byUsageRecord = recordRepository.findByUserId(userId);
+        List<UsageRecordDto> collect = byUsageRecord.stream().map(s -> new UsageRecordDto(s)).collect(Collectors.toList());
+        return collect;
     }
 
-    //유저의 이용 기록 보여주기
-    public List<Record> showUsageRecord(Long userId){
-        List<Record> byUsageRecord = recordRepositorySupport.findUserUsage(userId);
-        return byUsageRecord;
-    }
 
-    //유저의 주행 정보 보여주기
 
 }
