@@ -63,12 +63,6 @@ public class RecordService {
         return record.getId();
     }
 
-    //유저의 이용 횟수 보여주기
-    //public Integer showUsageCount(Long userId){
-    //    List<Record> findRecords = recordRepositorySupport.findUserInfo(userId);
-    //    return findRecords.size();
-    //}
-
     //유저의 사용 내역 보여주기
     public List<UsageRecordDto> showUsageRecord(Long userId){
         List<Record> byUsageRecord = recordRepository.findByUserId(userId);
