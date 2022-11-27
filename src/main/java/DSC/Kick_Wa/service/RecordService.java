@@ -41,9 +41,6 @@ public class RecordService {
                         .build()
         ).getId();
         vehicle.rentalStatus();
-
-        Record record = recordRepository.findById(recordId).get();
-        record.addUseCount();
         user.userRentalVehicle();
         return recordId;
     }
@@ -51,15 +48,21 @@ public class RecordService {
     //킥보드 반납하기
     @Transactional
     public Long returnVehicle(ReturnVehicleDto returnVehicleDto){
+
         Record record = recordRepository.findById(returnVehicleDto.getRecordId()).get();
         Vehicle vehicle = recordRepository.findById(returnVehicleDto.getRecordId()).get().getVehicle();
         Place place = placeRepository.findById(returnVehicleDto.getPlaceId()).get();
+        User user = recordRepository.findById(returnVehicleDto.getRecordId()).get().getUser();
+
         LocalDateTime time = LocalDateTime.now();
         Long useCount = record.useCal(time);
         record.edit(place,time,useCount);
+        //킥보드 정보 바꾸기
         vehicle.returnVehicle(time,place);
-        User user = recordRepository.findById(returnVehicleDto.getRecordId()).get().getUser();
+        //사용자 상태 바꾸기
         user.userReturnVehicle();
+        //반납 장소에 킥보드 넣기
+        place.placeInVehicle(vehicle);
         return record.getId();
     }
 

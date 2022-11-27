@@ -1,6 +1,8 @@
 package DSC.Kick_Wa.controller;
 
 import DSC.Kick_Wa.dto.SavePlaceRequestDto;
+import DSC.Kick_Wa.dto.response.ShowPlaceInfoDto;
+import DSC.Kick_Wa.dto.response.UsageRecordDto;
 import DSC.Kick_Wa.response.DefaultRes;
 import DSC.Kick_Wa.response.StatusCode;
 import DSC.Kick_Wa.service.PlaceService;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
@@ -56,4 +59,14 @@ public class PlaceController {
             return new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
        }
    }
+
+    @GetMapping("/show/place-info")
+    public ResponseEntity showUsageInfo(@RequestParam(name = "placeId") Long placeId) {
+
+        ShowPlaceInfoDto place = placeService.showPlaceInfo(placeId);
+
+        return place != null ?
+                new ResponseEntity(DefaultRes.res(StatusCode.OK, "장소 정보 조회 완료", place), HttpStatus.OK) :
+                new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
+    }
 }

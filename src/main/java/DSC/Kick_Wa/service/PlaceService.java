@@ -2,6 +2,7 @@ package DSC.Kick_Wa.service;
 
 import DSC.Kick_Wa.domain.Place;
 import DSC.Kick_Wa.dto.SavePlaceRequestDto;
+import DSC.Kick_Wa.dto.response.ShowPlaceInfoDto;
 import DSC.Kick_Wa.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,9 @@ public class PlaceService {
                         .build()
         ).getId();
     }
-    public void showPlaceInfo(){
-
+    public ShowPlaceInfoDto showPlaceInfo(Long placeId){
+        Place place = placeRepository.findByPlaceId(placeId).get();
+        ShowPlaceInfoDto showPlaceInfoDto = new ShowPlaceInfoDto(place);
+        return showPlaceInfoDto;
     }
 }

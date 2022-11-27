@@ -46,12 +46,9 @@ public class User {
         return this.role.getKey();
     }
 
-    public void addUseCount(){
-        this.useCount+= 1;
-    }
-
     public void userRentalVehicle(){
         this.userStatus = UserStatus.DRIVING;
+        this.useCount+=1;
     }
 
     public void userReturnVehicle(){

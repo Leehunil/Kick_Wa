@@ -55,8 +55,4 @@ public class Record {
         this.endT = endT;
         this.useFee= useFee;
     }
-
-    public void addUseCount(){
-        this.user.addUseCount();
-    }
 }

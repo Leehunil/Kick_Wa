@@ -33,4 +33,7 @@ public class Place {
         this.longitude = longitude;
     }
 
+    public void placeInVehicle(Vehicle vehicle){
+        this.vehicles.add(vehicle);
+    }
 }
