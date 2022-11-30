@@ -25,6 +25,7 @@ public class User {
 
     private Integer useCount;
 
+    @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
     @Builder
@@ -33,6 +34,8 @@ public class User {
         this.email = email;
         this.picture = picture;
         this.role = role;
+        this.useCount = 0;
+        this.userStatus = UserStatus.NOT_DRIVING;
     }
 
     public User update(String name, String picture){

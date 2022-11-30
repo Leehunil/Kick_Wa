@@ -2,7 +2,6 @@ package DSC.Kick_Wa.controller;
 
 import DSC.Kick_Wa.dto.SavePlaceRequestDto;
 import DSC.Kick_Wa.dto.response.ShowPlaceInfoDto;
-import DSC.Kick_Wa.dto.response.UsageRecordDto;
 import DSC.Kick_Wa.response.DefaultRes;
 import DSC.Kick_Wa.response.StatusCode;
 import DSC.Kick_Wa.service.PlaceService;

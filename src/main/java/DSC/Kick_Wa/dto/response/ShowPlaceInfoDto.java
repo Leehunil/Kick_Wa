@@ -11,12 +11,12 @@ public class ShowPlaceInfoDto {
 
     private String name;
 
-    private List<PlaceVehicleInfo> vehicles;
+    private List<PlaceVehicleInfoDto> vehicles;
 
     public ShowPlaceInfoDto(Place place){
         name = place.getName();
         vehicles = place.getVehicles().stream()
-                .map(vehicle -> new PlaceVehicleInfo(vehicle))
+                .map(vehicle -> new PlaceVehicleInfoDto(vehicle))
                 .collect(Collectors.toList());
 
     }

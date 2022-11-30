@@ -4,8 +4,10 @@ import DSC.Kick_Wa.domain.Place;
 import DSC.Kick_Wa.domain.Record;
 import DSC.Kick_Wa.domain.user.User;
 import DSC.Kick_Wa.domain.Vehicle;
+import DSC.Kick_Wa.domain.user.UserStatus;
 import DSC.Kick_Wa.dto.RentalDto;
 import DSC.Kick_Wa.dto.ReturnVehicleDto;
+import DSC.Kick_Wa.dto.response.RentVehicleInfoDto;
 import DSC.Kick_Wa.dto.response.UsageRecordDto;
 import DSC.Kick_Wa.repository.*;
 import DSC.Kick_Wa.repository.User.UserRepository;
@@ -40,7 +42,9 @@ public class RecordService {
                         .startT(LocalDateTime.now())
                         .build()
         ).getId();
+        //킥보드 상태 바꾸기
         vehicle.rentalStatus();
+        //사용자 상태 바꾸기
         user.userRentalVehicle();
         return recordId;
     }
@@ -69,10 +73,21 @@ public class RecordService {
     //유저의 사용 내역 보여주기
     public List<UsageRecordDto> showUsageRecord(Long userId){
         List<Record> byUsageRecord = recordRepository.findByUserId(userId);
+        for(Record record : byUsageRecord){
+            if(record.getEndT() == null){
+                byUsageRecord.remove(record);
+            }
+        }
         List<UsageRecordDto> collect = byUsageRecord.stream().map(s -> new UsageRecordDto(s)).collect(Collectors.toList());
         return collect;
     }
 
-
+    //사용중인 킥보드 정보 보여주기
+    public RentVehicleInfoDto rentVehicleInfoDto(Long userId){
+        List<Record> records = recordRepository.findByUserIdAndUserStatus(userId, UserStatus.DRIVING);
+        Record record = records.get(records.size()-1);
+        RentVehicleInfoDto rentVehicleInfoDto = new RentVehicleInfoDto(record);
+        return rentVehicleInfoDto;
+    }
 
 }

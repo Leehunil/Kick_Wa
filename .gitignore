@@ -18,6 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+application-apikey.properties
 .idea
 *.iws
 *.iml
@@ -26,6 +27,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 application.yml
+
 
 ### NetBeans ###
 /nbproject/private/
@@ -37,5 +39,3 @@ application.yml
 ### VS Code ###
 .vscode/
 
-### Key Properties ###
-application-apikey.properties

@@ -5,12 +5,12 @@ import DSC.Kick_Wa.domain.VehicleStatus;
 import lombok.Getter;
 
 @Getter
-public class PlaceVehicleInfo {
+public class PlaceVehicleInfoDto {
 
     private Long id;
     private VehicleStatus vehicleStatus;
 
-    public PlaceVehicleInfo(Vehicle vehicle){
+    public PlaceVehicleInfoDto(Vehicle vehicle){
         id = vehicle.getId();
         vehicleStatus = vehicle.getVehicleStatus();
     }
