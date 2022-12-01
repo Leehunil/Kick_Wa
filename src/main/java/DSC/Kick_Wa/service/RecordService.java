@@ -39,7 +39,7 @@ public class RecordService {
                 Record.builder()
                         .user(user)
                         .vehicle(vehicle)
-                        .startT(LocalDateTime.now())
+                        .startT(LocalDateTime.now().withNano(0))
                         .build()
         ).getId();
         //킥보드 상태 바꾸기
@@ -58,7 +58,7 @@ public class RecordService {
         Place place = placeRepository.findById(returnVehicleDto.getPlaceId()).get();
         User user = recordRepository.findById(returnVehicleDto.getRecordId()).get().getUser();
 
-        LocalDateTime time = LocalDateTime.now();
+        LocalDateTime time = LocalDateTime.now().withNano(0);
         Long useCount = record.useCal(time);
         record.edit(place,time,useCount);
         //킥보드 정보 바꾸기

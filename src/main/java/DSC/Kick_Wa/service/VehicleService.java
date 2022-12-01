@@ -20,7 +20,7 @@ public class VehicleService {
 
     //킥보드 생성
     @Transactional
-    public Long create(Long placeId,Integer baseRate, Integer perMinuteRate){
+    public Long create(Long placeId){
         Place place = placeRepository.findById(placeId).get();
 
         Long vehicleId = vehicleRepository.save(

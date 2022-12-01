@@ -42,6 +42,7 @@ public class PlaceController {
             BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
             result.append(bf.readLine());
 
+
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObject = (JSONObject) jsonParser.parse(result.toString());
             JSONArray jsonArray = (JSONArray) jsonObject.get("data");

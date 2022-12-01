@@ -1,37 +1,42 @@
-//package DSC.Kick_Wa.config;
-//
-//import DSC.Kick_Wa.service.user.CustomOAuth2UserService;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.boot.autoconfigure.security.SecurityProperties;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.core.annotation.Order;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.web.SecurityFilterChain;
-//import org.springframework.stereotype.Component;
-//
-//@RequiredArgsConstructor
-//@EnableWebSecurity //활성화 시키면 스프링 시큐리티 필터가 스프링 필터체인에 등록이 된다.
-//public class SecurityConfig {
-//
-//    private final CustomOAuth2UserService customOAuth2UserService;
-//
-//    @Bean
-//    @Order(SecurityProperties.BASIC_AUTH_ORDER)
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-//        http.csrf().disable()//crsf는 위조요청을 방지한다.
-//                .headers().frameOptions().disable()
-//                .and()
-//                    .authorizeHttpRequests()
-//                    .antMatchers("/user/**").permitAll()
-//                    .anyRequest().authenticated()
-//                .and()
-//                    .logout()
-//                        .logoutSuccessUrl("/")
-//                .and()
-//                    .oauth2Login()
-//                        .userInfoEndpoint()
-//                            .userService(customOAuth2UserService);
-//        return http.build();
-//    }
-//}
+package DSC.Kick_Wa.config;
+
+import DSC.Kick_Wa.filter.CustomAuthenticationEntryPoint;
+import DSC.Kick_Wa.filter.JwtAuthenticationFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+@Configuration
+@EnableWebSecurity //활성화 시키면 스프링 시큐리티 필터가 스프링 필터체인에 등록이 된다.
+public class SecurityConfig {
+
+    private final JwtTokenProvider jwtTokenProvider;
+
+    public SecurityConfig(JwtTokenProvider jwtTokenProvider){
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        http
+                .csrf().disable()//crsf는 위조요청을 방지한다.
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt는 토킅 방식이기 때문에 session을 사용하지 않는다
+                .and()
+                .authorizeRequests()
+                .antMatchers("/user/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic().disable() //rest api 이므로 기본설정 사용안함. 기본설정은 비인증시 로그인 폼 화면으로 리다이렉트 된다.
+                .formLogin().disable() //폼 로그인 방식 끄기
+                .exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                .and()
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+                        UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
+}

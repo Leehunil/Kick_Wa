@@ -38,17 +38,6 @@ public class User {
         this.userStatus = UserStatus.NOT_DRIVING;
     }
 
-    public User update(String name, String picture){
-        this.name = name;
-        this.picture = picture;
-
-        return this;
-    }
-
-    public String getRoleKey(){
-        return this.role.getKey();
-    }
-
     public void userRentalVehicle(){
         this.userStatus = UserStatus.DRIVING;
         this.useCount+=1;

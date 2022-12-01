@@ -6,13 +6,14 @@ import DSC.Kick_Wa.dto.SignUpDto;
 import DSC.Kick_Wa.dto.response.UserRecordDto;
 import DSC.Kick_Wa.repository.User.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Component
 @Service
 @RequiredArgsConstructor
-//@Slf4j
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
