@@ -6,12 +6,12 @@ import lombok.Getter;
 @Getter
 public class RentalDto {
 
-    private Long userId;
+    private String uid;
 
     private Long vehicleId;
 
-    public RentalDto(Long userId, Long vehicleId){
-        this.userId = userId;
+    public RentalDto(String uid, Long vehicleId){
+        this.uid = uid;
         this.vehicleId = vehicleId;
     }
 

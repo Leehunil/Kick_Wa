@@ -4,24 +4,26 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SpringBootApplication
 public class User {
 
     @Id @GeneratedValue
     @Column(name = "user_id")
     private Long id;
 
-    private String name;
-    private String email;
-    private String picture;
+    private String uid;
+    private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private String name;
+    private String phoneNum;
+    private String email;
 
     private Integer useCount;
 
@@ -29,11 +31,12 @@ public class User {
     private UserStatus userStatus;
 
     @Builder
-    public User(String name, String email, String picture, Role role){
+    public User(String uid,String password, String name, String phoneNum, String email){
+        this.uid = uid;
+        this.password = password;
         this.name = name;
+        this.phoneNum = phoneNum;
         this.email = email;
-        this.picture = picture;
-        this.role = role;
         this.useCount = 0;
         this.userStatus = UserStatus.NOT_DRIVING;
     }

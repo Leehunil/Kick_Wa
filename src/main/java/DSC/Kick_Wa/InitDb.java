@@ -1,7 +1,6 @@
 package DSC.Kick_Wa;
 
 import DSC.Kick_Wa.domain.*;
-import DSC.Kick_Wa.domain.user.Role;
 import DSC.Kick_Wa.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -29,9 +28,9 @@ public class InitDb {
 
         private final EntityManager em;
         public void dvInit1(){
-            User user1 = new User("이훈일","hunil9978@gmail.com","a", Role.USER);
-            User user2 = new User("이정일","hunil99786@gmail.com","ㅠ", Role.USER);
-            User user3 = new User("조준","hunil99784@gmail.com","ㄴ", Role.USER);
+            User user1 = new User("hunil99","hunil@3751","이훈일","010-4997-3751","hunil9978@gmail.com");
+            User user2 = new User("jungil02","jungil@3751","이정일","010-3207-3751","hunil99786@gmail.com");
+            User user3 = new User("junjang44","jojo","조준장","010-1234-5678","hunil99784@gmail.com");
 
             em.persist(user1);
             em.persist(user2);

@@ -45,9 +45,9 @@ public class RecordController {
 
     //유저 이용 내역
     @GetMapping("/show/usage-info")
-    public ResponseEntity showUsageInfo(@RequestParam(name = "userId") Long userId) {
+    public ResponseEntity showUsageInfo(@RequestParam(name = "uid") String uid) {
 
-        List<UsageRecordDto> collect = recordService.showUsageRecord(userId);
+        List<UsageRecordDto> collect = recordService.showUsageRecord(uid);
 
         return collect != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "유저 이용 내역 조회 완료", collect), HttpStatus.OK) :
@@ -56,9 +56,9 @@ public class RecordController {
 
     //사용중인 킥보드 정보
     @GetMapping("/show/rental-vehicle")
-    public ResponseEntity rentalVehicleInfo(@RequestParam(name = "userId") Long userId) {
+    public ResponseEntity rentalVehicleInfo(@RequestParam(name = "uid") String uid) {
 
-        RentVehicleInfoDto record = recordService.rentVehicleInfoDto(userId);
+        RentVehicleInfoDto record = recordService.rentVehicleInfoDto(uid);
 
         return record != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "이용중인 킥보드 내역 조회 완료", record), HttpStatus.OK) :
