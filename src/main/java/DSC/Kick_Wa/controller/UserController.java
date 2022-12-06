@@ -83,8 +83,8 @@ public class UserController {
 
     //내 정보 조회
     @GetMapping("/myinfo")
-    public ResponseEntity myInfo(@RequestParam(name = "userUid") String userUid) {
-        MyInfoDto myInfoDto = userService.myInfoDto(userUid);
+    public ResponseEntity myInfo(@RequestParam(name = "uid") String uid) {
+        MyInfoDto myInfoDto = userService.myInfoDto(uid);
 
         return myInfoDto != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK,"나의 정보 확인 완료"), HttpStatus.OK):

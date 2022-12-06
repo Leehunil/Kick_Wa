@@ -21,7 +21,7 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    @Value("spring.jwt.secret")
+    @Value("${jwt.token.secretKey}")
     private String secretKey;
 
     private final long accessTokenValidTime = 1000L * 60 * 60 * 6;
@@ -63,7 +63,7 @@ public class JwtTokenProvider {
 
     //토큰에서 회원 정보 추출 - uid
     public String getUid(String token){
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJwt(token).getBody().getSubject();
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
     //토큰에서 회원 정보 추출 - Id
@@ -99,12 +99,12 @@ public class JwtTokenProvider {
 
     //AccessToken 헤더 설정
     public void setHeaderAccessToken(HttpServletResponse response, String accessToken){
-        response.setHeader("Authorization", "bearer"+ accessToken);
+        response.setHeader("Authorization", "bearer "+ accessToken);
     }
 
     //RefreshToken 헤더 설정
     public void setHeaderRefreshToken(HttpServletResponse response, String refreshToken){
-        response.setHeader("RefreshToken", "bearer"+ refreshToken);
+        response.setHeader("RefreshToken", "bearer "+ refreshToken);
     }
 
     //RefreshToken 존재유무 확인

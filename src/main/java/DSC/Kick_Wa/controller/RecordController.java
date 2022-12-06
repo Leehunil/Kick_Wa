@@ -2,6 +2,7 @@ package DSC.Kick_Wa.controller;
 
 import DSC.Kick_Wa.dto.RentalDto;
 import DSC.Kick_Wa.dto.ReturnVehicleDto;
+import DSC.Kick_Wa.dto.response.PaymentDto;
 import DSC.Kick_Wa.dto.response.RentVehicleInfoDto;
 import DSC.Kick_Wa.dto.response.UsageRecordDto;
 import DSC.Kick_Wa.response.DefaultRes;
@@ -58,10 +59,21 @@ public class RecordController {
     @GetMapping("/show/rental-vehicle")
     public ResponseEntity rentalVehicleInfo(@RequestParam(name = "uid") String uid) {
 
-        RentVehicleInfoDto record = recordService.rentVehicleInfoDto(uid);
+        RentVehicleInfoDto record = recordService.showRentVehicleInfo(uid);
 
         return record != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "이용중인 킥보드 내역 조회 완료", record), HttpStatus.OK) :
+                new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
+    }
+
+    //반납 결제
+    @GetMapping("/show/payment-info")
+    public ResponseEntity showPaymentInfo(@RequestParam(name = "uid") String uid){
+
+        PaymentDto result = recordService.showPayment(uid);
+
+        return result != null ?
+                new ResponseEntity(DefaultRes.res(StatusCode.OK, "결제 정보 조회 완료", result), HttpStatus.OK) :
                 new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
     }
 }

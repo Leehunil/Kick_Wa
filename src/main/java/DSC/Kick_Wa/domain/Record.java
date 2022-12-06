@@ -41,18 +41,22 @@ public class Record {
         this.user = user;
         this.vehicle = vehicle;
         this.startT = startT;
+        this.useFee = 0L;
     }
 
-    public Long useCal(LocalDateTime endT){
+    public Long driveTime(LocalDateTime endT){
         Duration duration = Duration.between(this.startT,endT);
         Long seconds = duration.getSeconds();
         Long minute = seconds/60;
-        return 500+(minute * 100);
+        return minute;
     }
 
-    public void edit(Place endPlace,LocalDateTime endT,Long useFee){
+    public void useCal(Long minute){
+        this.useFee= 500+(minute * 100);
+    }
+
+    public void edit(Place endPlace,LocalDateTime endT){
         this.endPlace = endPlace;
         this.endT = endT;
-        this.useFee= useFee;
     }
 }

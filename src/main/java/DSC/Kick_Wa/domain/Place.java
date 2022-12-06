@@ -23,6 +23,7 @@ public class Place {
     private String latitude;
     private String longitude;
 
+
     @OneToMany(mappedBy = "place", orphanRemoval = true)
     private List<Vehicle> vehicles = new ArrayList<>();
 

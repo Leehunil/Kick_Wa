@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt는 토킅 방식이기 때문에 session을 사용하지 않는다
                 .and()
                 .authorizeRequests()
-                .antMatchers("/user/**").permitAll()
+                .antMatchers("/user/signup","/user/signin","/user/checkunique").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic().disable() //rest api 이므로 기본설정 사용안함. 기본설정은 비인증시 로그인 폼 화면으로 리다이렉트 된다.
