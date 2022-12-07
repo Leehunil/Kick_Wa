@@ -43,10 +43,11 @@ public class User {
 
     public void userRentalVehicle(){
         this.userStatus = UserStatus.DRIVING;
-        this.useCount+=1;
     }
 
     public void userReturnVehicle(){
         this.userStatus = UserStatus.NOT_DRIVING;
+        this.useCount+=1;
+
     }
 }

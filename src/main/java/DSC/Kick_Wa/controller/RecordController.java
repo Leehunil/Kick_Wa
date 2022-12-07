@@ -46,9 +46,9 @@ public class RecordController {
 
     //유저 이용 내역
     @GetMapping("/show/usage-info")
-    public ResponseEntity showUsageInfo(@RequestParam(name = "uid") String uid) {
+    public ResponseEntity showUsageInfo(@RequestParam(name = "userId") Long userId) {
 
-        List<UsageRecordDto> collect = recordService.showUsageRecord(uid);
+        List<UsageRecordDto> collect = recordService.showUsageRecord(userId);
 
         return collect != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "유저 이용 내역 조회 완료", collect), HttpStatus.OK) :
@@ -57,9 +57,9 @@ public class RecordController {
 
     //사용중인 킥보드 정보
     @GetMapping("/show/rental-vehicle")
-    public ResponseEntity rentalVehicleInfo(@RequestParam(name = "uid") String uid) {
+    public ResponseEntity rentalVehicleInfo(@RequestParam(name = "userId") Long userId) {
 
-        RentVehicleInfoDto record = recordService.showRentVehicleInfo(uid);
+        RentVehicleInfoDto record = recordService.showRentVehicleInfo(userId);
 
         return record != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "이용중인 킥보드 내역 조회 완료", record), HttpStatus.OK) :
@@ -68,9 +68,9 @@ public class RecordController {
 
     //반납 결제
     @GetMapping("/show/payment-info")
-    public ResponseEntity showPaymentInfo(@RequestParam(name = "uid") String uid){
+    public ResponseEntity showPaymentInfo(@RequestParam(name = "userId") Long userId){
 
-        PaymentDto result = recordService.showPayment(uid);
+        PaymentDto result = recordService.showPayment(userId);
 
         return result != null ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "결제 정보 조회 완료", result), HttpStatus.OK) :

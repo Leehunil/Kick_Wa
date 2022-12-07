@@ -73,8 +73,8 @@ public class RecordService {
     }
 
     //유저의 사용 내역 보여주기
-    public List<UsageRecordDto> showUsageRecord(String uid){
-        List<Record> byUsageRecord = recordRepository.findByUserId(uid);
+    public List<UsageRecordDto> showUsageRecord(Long id){
+        List<Record> byUsageRecord = recordRepository.findByUserUid(id);
         for(Record record : byUsageRecord){
             if(record.getEndT() == null){
                 byUsageRecord.remove(record);
@@ -85,16 +85,16 @@ public class RecordService {
     }
 
     //사용중인 킥보드 정보 보여주기
-    public RentVehicleInfoDto showRentVehicleInfo(String uid){
-        List<Record> records = recordRepository.findByUserIdAndUserStatus(uid, UserStatus.DRIVING);
-        Record record = records.get(records.size()-1);
+    public RentVehicleInfoDto showRentVehicleInfo(Long id){
+        List<Record> records = recordRepository.findByUserUidAndUserStatus(id,UserStatus.DRIVING);
+        Record record = records.get(records.size());
         RentVehicleInfoDto rentVehicleInfoDto = new RentVehicleInfoDto(record);
         return rentVehicleInfoDto;
     }
 
     //주행 완료(결제)
-    public PaymentDto showPayment(String uid){
-        List<Record> records = recordRepository.findByUserId(uid);
+    public PaymentDto showPayment(Long id){
+        List<Record> records = recordRepository.findByUserUid(id);
         Record record = records.get(records.size() - 1);
         PaymentDto paymentDto = new PaymentDto(record);
         return paymentDto;

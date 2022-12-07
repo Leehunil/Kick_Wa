@@ -18,11 +18,11 @@ public interface RecordRepository extends JpaRepository<Record,Long> {
     void deleteById(Long id);
 
     @Query("select r from Record r join fetch r.vehicle v join fetch r.user u " +
-            "where u.uid = :uid")
-    List<Record> findByUserId(@Param("uid") String uid);
+            "where u.id = :userId")
+    List<Record> findByUserUid(@Param("userId") Long id);
 
     @Query("select distinct r from Record r join fetch r.vehicle v join fetch r.user u " +
-            "where u.uid = :uid and u.userStatus = :userStatus " +
+            "where u.id = :userId and u.userStatus = :userStatus " +
             "order by r.startT")
-    List<Record> findByUserIdAndUserStatus(@Param("uid") String uid, @Param("userStatus") UserStatus userStatus);
+    List<Record> findByUserUidAndUserStatus(@Param("userId") Long id, @Param("userStatus") UserStatus userStatus);
 }
