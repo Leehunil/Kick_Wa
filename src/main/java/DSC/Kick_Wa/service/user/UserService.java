@@ -95,7 +95,7 @@ public class UserService {
     }
 
     //내 정보 조회
-    public MyInfoDto myInfoDto(String uid){
+    public MyInfoDto showMyInfo(String uid){
         User member = userRepository.findByUid(uid).get();
 
         MyInfoDto myInfoDto = new MyInfoDto(member);

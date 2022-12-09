@@ -19,10 +19,9 @@ public interface RecordRepository extends JpaRepository<Record,Long> {
 
     @Query("select r from Record r join fetch r.vehicle v join fetch r.user u " +
             "where u.id = :userId")
-    List<Record> findByUserUid(@Param("userId") Long id);
+    List<Record> findByUserId(@Param("userId") Long id);
 
     @Query("select distinct r from Record r join fetch r.vehicle v join fetch r.user u " +
-            "where u.id = :userId and u.userStatus = :userStatus " +
-            "order by r.startT")
+            "where u.id = :userId and u.userStatus = :userStatus")
     List<Record> findByUserUidAndUserStatus(@Param("userId") Long id, @Param("userStatus") UserStatus userStatus);
 }

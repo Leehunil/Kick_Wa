@@ -2,7 +2,9 @@ package DSC.Kick_Wa.dto.response;
 
 import DSC.Kick_Wa.domain.user.User;
 import DSC.Kick_Wa.domain.user.UserStatus;
+import lombok.Getter;
 
+@Getter
 public class MyInfoDto {
 
     private String name;
