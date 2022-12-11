@@ -44,11 +44,11 @@ public class InitDb {
             em.persist(place2);
             em.persist(place3);
 
-            Vehicle vehicle1 = new Vehicle(place1,500,100, VehicleStatus.POSSIBLE);
+            Vehicle vehicle1 = new Vehicle(place1,500,100, VehicleStatus.POSSIBLE,"ADDVUHNSDIBN13NDV");
             vehicle1.setEndT(LocalDateTime.now());
-            Vehicle vehicle2 = new Vehicle(place2,500,100,VehicleStatus.POSSIBLE);
+            Vehicle vehicle2 = new Vehicle(place2,500,100,VehicleStatus.POSSIBLE,"AJSGJBIO8298RBV82BDUV");
             vehicle2.setEndT(LocalDateTime.now());
-            Vehicle vehicle3 = new Vehicle(place3,500,100,VehicleStatus.POSSIBLE);
+            Vehicle vehicle3 = new Vehicle(place3,500,100,VehicleStatus.POSSIBLE,"UQIEGIUQ84HVUFHDBJSFSUBVFD"); 
             vehicle3.setEndT(LocalDateTime.now());
 
             em.persist(vehicle1);

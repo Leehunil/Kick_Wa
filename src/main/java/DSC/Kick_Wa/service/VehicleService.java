@@ -46,7 +46,7 @@ public class VehicleService {
     public VehicleShowInfoDto vehicleShowInfo(Long vehicleId){
         Vehicle vehicle = vehicleRepository.findById(vehicleId).get();
         VehicleShowInfoDto vehicleShowInfoDto = new VehicleShowInfoDto(vehicle.getEndT(), vehicle.getBaseRate(),
-                vehicle.getPerMinuteRate(),vehicle.getVehicleStatus());
+                vehicle.getPerMinuteRate(),vehicle.getVehicleStatus(), vehicle.getHelmetPicture());
         return vehicleShowInfoDto;
     }
 

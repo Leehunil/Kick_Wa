@@ -14,11 +14,13 @@ public class VehicleShowInfoDto {
     private Integer baseRate;
     private Integer perMinuteRate;
     private VehicleStatus vehicleStatus;
+    private String helmetPicture;
 
-    public VehicleShowInfoDto(LocalDateTime endT, Integer baseRate, Integer perMinuteRate, VehicleStatus vehicleStatus){
+    public VehicleShowInfoDto(LocalDateTime endT, Integer baseRate, Integer perMinuteRate, VehicleStatus vehicleStatus,String helmetPicture){
         this.endT = endT;
         this.baseRate = baseRate;
         this.perMinuteRate = perMinuteRate;
         this.vehicleStatus = vehicleStatus;
+        this.helmetPicture = helmetPicture;
     }
 }

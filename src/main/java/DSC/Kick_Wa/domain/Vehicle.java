@@ -29,12 +29,15 @@ public class Vehicle {
     @Enumerated(EnumType.STRING)
     private VehicleStatus vehicleStatus;
 
+    private String helmetPicture;
+
     @Builder
-    public Vehicle(Place place, Integer baseRate, Integer perMinuteRate, VehicleStatus vehicleStatus){
+    public Vehicle(Place place, Integer baseRate, Integer perMinuteRate, VehicleStatus vehicleStatus,String helmetPicture){
         this.place = place;
         this.baseRate = baseRate;
         this.perMinuteRate = perMinuteRate;
         this.vehicleStatus = vehicleStatus;
+        this.helmetPicture = helmetPicture;
     }
 
 
